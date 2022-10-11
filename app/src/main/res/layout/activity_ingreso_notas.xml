@@ -24,15 +24,17 @@
             android:text="Notas Parciales"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="20dp" />
+
         <TextView
+            android:textAlignment="center"
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginBottom="50dp"
             android:text="Ingrese las notas en los espacios"
             android:textColor="@color/black"
-            android:layout_marginBottom="50dp"
-            android:layout_marginHorizontal="15dp"/>
+            android:textSize="20dp" />
 
         <TableLayout
             android:layout_width="match_parent"
@@ -54,7 +56,7 @@
                     android:textSize="20dp" />
 
                 <EditText
-                    android:id="@+id/eTxtNot1"
+                    android:id="@+id/eTxtNota1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="100dp"
@@ -78,7 +80,7 @@
                     android:textSize="20dp" />
 
                 <EditText
-                    android:id="@+id/eTxtNom2"
+                    android:id="@+id/eTxtNota2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="100dp"
@@ -102,7 +104,7 @@
                     android:textSize="20dp" />
 
                 <EditText
-                    android:id="@+id/eTxtNot3"
+                    android:id="@+id/eTxtNota3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="100dp"
@@ -126,7 +128,7 @@
                     android:textSize="20dp" />
 
                 <EditText
-                    android:id="@+id/eTxtNot4"
+                    android:id="@+id/eTxtNota4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="100dp"
@@ -150,7 +152,7 @@
                     android:textSize="20dp" />
 
                 <EditText
-                    android:id="@+id/eTxtNot5"
+                    android:id="@+id/eTxtNota5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="100dp"
@@ -171,6 +173,7 @@
                 android:layout_height="match_parent">
 
                 <Button
+                    android:layout_marginTop="40dp"
                     android:id="@+id/btnCalNotas"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
