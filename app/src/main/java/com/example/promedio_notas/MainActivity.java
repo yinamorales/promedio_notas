@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         if (!eTxTNom.getText().equals("") || !eTxTCod.getText().equals("")){
             btnInsertNot.setOnClickListener(view -> {
                 Intent intent = new Intent(this,IngresoNotasActivity.class);
-
+                registrarUsuario();
                 startActivity(intent);
             });
         }else{
