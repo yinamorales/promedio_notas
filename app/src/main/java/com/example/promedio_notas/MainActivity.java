@@ -2,6 +2,7 @@ package com.example.promedio_notas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,8 +23,10 @@ public class MainActivity extends AppCompatActivity {
 
         if (!eTxTNom.getText().equals("") || !eTxTCod.getText().equals("")){
             btnInsertNot.setOnClickListener(view -> {
-
-
+                Intent intent= new Intent (this, IngresoNotasActivity.class);
+                intent.putExtra("Nombre",eTxTNom.toString());
+                intent.putExtra("Codigo",eTxTCod.toString());
+                startActivity(intent);
 
             });
         }else{
