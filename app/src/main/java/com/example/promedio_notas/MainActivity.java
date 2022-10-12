@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
 
             btnInsertNot.setOnClickListener(view -> {
-                if (!eTxTNom.getText().equals(null) || !eTxTCod.getText().equals(null)) {
+                if (eTxTNom.getText().length()>0 && eTxTCod.getText().length()>0) {
                 Intent intent = new Intent(this, IngresoNotasActivity.class);
                 intent.putExtra("NOMBRE", eTxTNom.getText().toString());
                 intent.putExtra("CODIGO", eTxTCod.getText().toString());

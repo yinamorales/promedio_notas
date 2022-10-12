@@ -33,7 +33,14 @@ public class IngresoNotasActivity extends AppCompatActivity {
         recover_cod = getIntent().getStringExtra("CODIGO");
 
         btnCalcularNotas.setOnClickListener(view -> {
-            promedio();
+
+            if (eTxtNota1.getText().length()>0 && eTxtNota2.getText().length()>0 && eTxtNota3.getText().length()>0 && eTxtNota4.getText().length()>0 &&
+                    eTxtNota5.getText().length()>0 ){
+                promedio();
+            }else{
+                Toast.makeText(this, "Campos vacios", Toast.LENGTH_LONG).show();
+            }
+
         });
 
     }
@@ -67,19 +74,20 @@ public class IngresoNotasActivity extends AppCompatActivity {
 
             //inserccion con bd
             ContentValues values = new ContentValues();
-            values.put("NOMBRE", recover_name);
             values.put("CODIGO", recover_cod);
+            values.put("NOMBRE", recover_name);
             values.put("NOTA", promedio);
             datos.insert("USUARIOS", null, values);
-
+            datos.close();
 
 
             /*/insertar dato
             long id = datos.insert(Constantes.NOMBRE_TABLA_USUARIO, null,values);
-            datos.close();*/
+            */
 
 
-
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
         }
         catch (Exception e){
             Toast.makeText(this, "NO FUE POSIBLE REGISTRAR LA INFORMACION", Toast.LENGTH_LONG).show();
