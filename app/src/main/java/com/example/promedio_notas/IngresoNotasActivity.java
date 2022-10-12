@@ -74,10 +74,10 @@ public class IngresoNotasActivity extends AppCompatActivity {
 
             //inserccion con bd
             ContentValues values = new ContentValues();
-            values.put("CODIGO", recover_cod);
+            values.put("CODIGO", Integer.parseInt(recover_cod));
             values.put("NOMBRE", recover_name);
             values.put("NOTA", promedio);
-            datos.insert("USUARIOS", null, values);
+            datos.insert(Constantes.NOMBRE_TABLA_USUARIO, null, values);
             datos.close();
 
 
@@ -90,7 +90,8 @@ public class IngresoNotasActivity extends AppCompatActivity {
             startActivity(intent);
         }
         catch (Exception e){
-            Toast.makeText(this, "NO FUE POSIBLE REGISTRAR LA INFORMACION", Toast.LENGTH_LONG).show();
+
+            Toast.makeText(this, recover_name, Toast.LENGTH_LONG).show();
         }
     }
 }

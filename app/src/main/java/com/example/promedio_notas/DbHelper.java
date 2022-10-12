@@ -11,7 +11,7 @@ public class DbHelper extends SQLiteOpenHelper {
     public static final String CREAR_TABLA_USUARIO = "CREATE TABLE "+ Constantes.NOMBRE_TABLA_USUARIO +
             "(CODIGO INTEGER NOT NULL PRIMARY KEY,"+
             "NOMBRE TEXT NOT NULL," +
-            "NOTA NUMBER NOT NULL)";
+            "NOTA TEXT NOT NULL)";
 
 
 
