@@ -15,7 +15,7 @@ public class IngresoNotasActivity extends AppCompatActivity {
     Button btnCalcularNotas;
     EditText eTxtNota1,eTxtNota2,eTxtNota3,eTxtNota4, eTxtNota5;
     double Not1, Not2, Not3, Not4, Not5, promedio;
-    String recover_name, recover_cod;
+    String recover_name, recover_cod, report_nota;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +36,17 @@ public class IngresoNotasActivity extends AppCompatActivity {
 
             if (eTxtNota1.getText().length()>0 && eTxtNota2.getText().length()>0 && eTxtNota3.getText().length()>0 && eTxtNota4.getText().length()>0 &&
                     eTxtNota5.getText().length()>0 ){
-                promedio();
+                if (Double.parseDouble(eTxtNota1.getText().toString())>=0 && Double.parseDouble(eTxtNota1.getText().toString())<=5 &&
+                    Double.parseDouble(eTxtNota2.getText().toString())>=0 && Double.parseDouble(eTxtNota2.getText().toString())<=5 &&
+                    Double.parseDouble(eTxtNota3.getText().toString())>=0 && Double.parseDouble(eTxtNota3.getText().toString())<=5 &&
+                    Double.parseDouble(eTxtNota4.getText().toString())>=0 && Double.parseDouble(eTxtNota4.getText().toString())<=5 &&
+                    Double.parseDouble(eTxtNota5.getText().toString())>=0 && Double.parseDouble(eTxtNota5.getText().toString())<=5 ){
+                    promedio();
+                }else{
+                    Toast.makeText(this, "El valor de las notas debe ser de 0.0 a 5.0", Toast.LENGTH_LONG).show();
+
+                }
+
             }else{
                 Toast.makeText(this, "Campos vacios", Toast.LENGTH_LONG).show();
             }
@@ -57,11 +67,14 @@ public class IngresoNotasActivity extends AppCompatActivity {
         promedio = (Not1 + Not2 + Not3 + Not4 + Not5) / 5;
         if(promedio >= 3){
             Toast.makeText(this, "Aprobo la asignatura con "+promedio, Toast.LENGTH_LONG).show();
+            report_nota = "Aprobado";
+            registrarUsuario();
         }else{
             Toast.makeText(this, "Reprobo la asignatura con "+promedio, Toast.LENGTH_LONG).show();
-
+            report_nota = "Reprobado";
+            registrarUsuario();
         }
-        registrarUsuario();
+
     }
 
     public void registrarUsuario(){
@@ -76,7 +89,8 @@ public class IngresoNotasActivity extends AppCompatActivity {
             ContentValues values = new ContentValues();
             values.put("CODIGO", Integer.parseInt(recover_cod));
             values.put("NOMBRE", recover_name);
-            values.put("NOTA", promedio);
+            values.put("NOTA", promedio+"");
+            values.put("APROBAR", report_nota);
             datos.insert(Constantes.NOMBRE_TABLA_USUARIO, null, values);
             datos.close();
 
@@ -91,7 +105,7 @@ public class IngresoNotasActivity extends AppCompatActivity {
         }
         catch (Exception e){
 
-            Toast.makeText(this, recover_name, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "No se ha podido guardar", Toast.LENGTH_LONG).show();
         }
     }
 }

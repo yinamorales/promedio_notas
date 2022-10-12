@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".InformeActivity">
 
     <LinearLayout
         android:layout_width="409dp"
-        android:layout_height="729dp"
+        android:layout_height="578dp"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="1dp">
@@ -16,22 +17,37 @@
         <TextView
             android:id="@+id/txtTituloInforme"
             android:layout_width="match_parent"
-            android:textSize="35dp"
-            android:textAlignment="center"
-            android:textStyle="bold"
-            android:textColor="@color/black"
             android:layout_height="wrap_content"
-            android:text="Informe"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="20dp" />
+            android:layout_marginBottom="20dp"
+            android:text="Informe"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="35dp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/txtInforme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Aqui va el informe"
+            android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="25dp"
-            android:textAlignment="center"/>
+            android:textSize="25dp" />
+
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btnHome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp"
+            android:text="Atras" />
+    </LinearLayout>
+
 </LinearLayout>

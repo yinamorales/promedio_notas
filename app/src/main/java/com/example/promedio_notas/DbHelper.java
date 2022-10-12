@@ -11,7 +11,8 @@ public class DbHelper extends SQLiteOpenHelper {
     public static final String CREAR_TABLA_USUARIO = "CREATE TABLE "+ Constantes.NOMBRE_TABLA_USUARIO +
             "(CODIGO INTEGER NOT NULL PRIMARY KEY,"+
             "NOMBRE TEXT NOT NULL," +
-            "NOTA TEXT NOT NULL)";
+            "NOTA TEXT NOT NULL," +
+            "APROBAR TEXT NOT NULL)";
 
 
 
@@ -29,7 +30,7 @@ public class DbHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         //Elimina tabla si existe
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+ Constantes.NOMBRE_TABLA_USUARIO);
-        sqLiteDatabase.execSQL(CREAR_TABLA_USUARIO);
+       // sqLiteDatabase.execSQL(CREAR_TABLA_USUARIO);
 
 
         //Creacion tabla

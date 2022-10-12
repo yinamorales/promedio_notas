@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.Button;
@@ -28,14 +29,35 @@ public class MainActivity extends AppCompatActivity {
 
             btnInsertNot.setOnClickListener(view -> {
                 if (eTxTNom.getText().length()>0 && eTxTCod.getText().length()>0) {
-                Intent intent = new Intent(this, IngresoNotasActivity.class);
-                intent.putExtra("NOMBRE", eTxTNom.getText().toString());
-                intent.putExtra("CODIGO", eTxTCod.getText().toString());
 
-                startActivity(intent);
+
+                     DbHelper con = new DbHelper(this);
+                     SQLiteDatabase bd = con.getReadableDatabase();
+
+                     String user_cod = eTxTCod.getText().toString();
+
+                        Cursor fila = bd.rawQuery("SELECT * FROM "+ Constantes.NOMBRE_TABLA_USUARIO+" WHERE CODIGO = '"+user_cod+"'",null);
+
+                        if(fila.moveToFirst()){
+                            Toast.makeText(this, "El usuario ya existe", Toast.LENGTH_LONG).show();
+
+                        }else{
+                            Intent intent = new Intent(this, IngresoNotasActivity.class);
+                            intent.putExtra("NOMBRE", eTxTNom.getText().toString());
+                            intent.putExtra("CODIGO", eTxTCod.getText().toString());
+
+                            startActivity(intent);
+
+                        }
+
                 } else {
                     Toast.makeText(this, "Campos vacios", Toast.LENGTH_LONG).show();
                 }
+            });
+
+            btnInf.setOnClickListener(view -> {
+                Intent intent = new Intent(this, InformeActivity.class);
+                startActivity(intent);
             });
 
     }
