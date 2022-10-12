@@ -42,11 +42,17 @@ public class InformeActivity extends AppCompatActivity {
             Cursor fila = bd.rawQuery("SELECT * FROM "+ Constantes.NOMBRE_TABLA_USUARIO,null);
 
             fila.moveToFirst();
-            while (fila.moveToNext()){
-                        String cod = fila.toString(fila.getColumnIndex("CODIGO"));
-                 txtInforme.setText(fila.toString());
 
-            }
+            do{
+                String cod = fila.getString(0);
+                String user = fila.getString(1);
+                String nota = fila.getString(2);
+                String report = fila.getString(3);
+                txtInforme.setText("Codigo: "+cod+ " " + "Nombre: "+ user+ " " + "Nota: "+nota+" "+"Reporte: "+report);
+
+            }while (fila.moveToNext());
+
+
 
 
 
