@@ -9,8 +9,11 @@ import androidx.annotation.Nullable;
 public class DbHelper extends SQLiteOpenHelper {
 
     public static final String CREAR_TABLA_USUARIO = "CREATE TABLE "+ Constantes.NOMBRE_TABLA_USUARIO +
-            "(NOMBRE TEXT NOT NULL,"+
-            "CODIGO INTEGER NOT NULL)";
+            "(CODIGO INTEGER NOT NULL PRIMARY KEY,"+
+            "NOMBRE TEXT NOT NULL," +
+            "NOTA NUMBER NOT NULL)";
+
+
 
     public DbHelper(@Nullable Context context) {
         super(context, Constantes.NOMBRE_BD, null, Constantes.VERSION_BD);

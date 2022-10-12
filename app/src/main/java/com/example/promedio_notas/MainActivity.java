@@ -22,49 +22,23 @@ public class MainActivity extends AppCompatActivity {
 
         btnInsertNot = findViewById(R.id.btnInsertNotas);
         btnInf = findViewById(R.id.btnInforme);
-        eTxTNom =  findViewById(R.id.txtNombre);
+        eTxTNom = findViewById(R.id.txtNombre);
         eTxTCod = findViewById(R.id.eTxTCod);
 
-        if (!eTxTNom.getText().equals("") || !eTxTCod.getText().equals("")){
+
             btnInsertNot.setOnClickListener(view -> {
-                Intent intent = new Intent(this,IngresoNotasActivity.class);
-                registrarUsuario();
-                startActivity(intent);
-            });
-        }else{
-            Toast.makeText(this, "Campos vacios", Toast.LENGTH_LONG).show();
-        }
-    }
-
-    public void registrarUsuario(){
-        try {
-            //conexion  con la bd
-            DbHelper helper = new DbHelper(this);
-
-            //obj para la interaccioncon la base de datos
-            SQLiteDatabase datos = helper.getWritableDatabase();
-
-            //inserccion con bd
-            ContentValues values = new ContentValues();
-            values.put("NOMBRE",eTxTNom.getText().toString());
-            values.put("CODIGO", Integer.parseInt(eTxTCod.getText().toString()));
-
-            //insertar dato
-            long id = datos.insert(Constantes.NOMBRE_TABLA_USUARIO, null,values);
-            datos.close();
-
-            if(id>0){
-                Toast.makeText(this, "REGISTRO DE USUARIO CREADO", Toast.LENGTH_SHORT).show();
-                Intent intent=new Intent(this, MainActivity.class);
+                if (!eTxTNom.getText().equals(null) || !eTxTCod.getText().equals(null)) {
+                Intent intent = new Intent(this, IngresoNotasActivity.class);
                 intent.putExtra("NOMBRE", eTxTNom.getText().toString());
-                startActivity(intent);
-            }
-            else {
-            }
+                intent.putExtra("CODIGO", eTxTCod.getText().toString());
 
-        }
-        catch (Exception e){
-            Toast.makeText(this, "NO FUE POSIBLE REGISTRAR LA INFORMACION", Toast.LENGTH_LONG).show();
-        }
+                startActivity(intent);
+                } else {
+                    Toast.makeText(this, "Campos vacios", Toast.LENGTH_LONG).show();
+                }
+            });
+
     }
+
+
 }
