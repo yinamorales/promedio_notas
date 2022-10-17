@@ -33,7 +33,12 @@
             android:text="Aqui va el informe"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="25dp" />
+            android:textSize="10dp" />
+
+        <ListView
+            android:id="@+id/listViewUsuarios"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 

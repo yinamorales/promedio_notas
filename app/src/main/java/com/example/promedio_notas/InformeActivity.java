@@ -6,13 +6,27 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class InformeActivity extends AppCompatActivity {
     TextView txtInforme;
     Button btnInicio;
-    String usuarios;
+    ListView listviewUsuarios;
+
+
+
+    Usuario usuario = new Usuario();
+    DbHelper con = new DbHelper(this);
+
+
+    ArrayList<String> listInfo; //= new ArrayList<String>();
+    ArrayList<Usuario> listInforme = new ArrayList<Usuario>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,42 +34,58 @@ public class InformeActivity extends AppCompatActivity {
 
         txtInforme = findViewById(R.id.txtInforme);
         btnInicio = findViewById(R.id.btnHome);
+        listviewUsuarios = findViewById(R.id.listViewUsuarios);
 
         btnInicio.setOnClickListener(view -> {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         });
 
+
         informe();
 
-
-
+        ArrayAdapter adaptador = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listInfo);
+        listviewUsuarios.setAdapter(adaptador);
 
     }
 
     public void informe(){
-        DbHelper con = new DbHelper(this);
+
+        usuario = null;
+
         SQLiteDatabase bd = con.getReadableDatabase();
 
+       Cursor fila = bd.rawQuery("SELECT * FROM "+ Constantes.NOMBRE_TABLA_USUARIO,null);
 
+       while (fila.moveToNext()){
 
-            Cursor fila = bd.rawQuery("SELECT * FROM "+ Constantes.NOMBRE_TABLA_USUARIO,null);
+           usuario = new Usuario();
 
-            fila.moveToFirst();
+           usuario.setCODIGO(fila.getInt(0));
+           usuario.setNOMBRE(fila.getString(1));
+           usuario.setNOTA(fila.getString(2));
+           usuario.setAPROBAR(fila.getString(3));
 
-            do{
-                String cod = fila.getString(0);
-                String user = fila.getString(1);
-                String nota = fila.getString(2);
-                String report = fila.getString(3);
-                txtInforme.setText("Codigo: "+cod+ " " + "Nombre: "+ user+ " " + "Nota: "+nota+" "+"Reporte: "+report);
+           listInforme.add(usuario);
 
-            }while (fila.moveToNext());
+           mostrarInforme();
 
-
-
-
+       }
 
     }
+
+    private void mostrarInforme() {
+
+        listInfo = new ArrayList<String>();
+
+
+        for ( int i=0 ; i< listInforme.size();i++){
+            listInfo.add(listInforme.get(i).getCODIGO()+" - "
+                    + listInforme.get(i).getNOMBRE()+" - "
+                    + listInforme.get(i).getNOTA() + " - "
+                    + listInforme.get(i).getAPROBAR());
+        }
+    }
+
 
 }

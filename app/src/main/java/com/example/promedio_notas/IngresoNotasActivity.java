@@ -95,10 +95,6 @@ public class IngresoNotasActivity extends AppCompatActivity {
             datos.close();
 
 
-            /*/insertar dato
-            long id = datos.insert(Constantes.NOMBRE_TABLA_USUARIO, null,values);
-            */
-
 
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
